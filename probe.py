@@ -5,13 +5,16 @@ from google.protobuf import text_format
 from utils import functions
 import argparse, requests, gzip, shutil, os, yaml
 
+def load_config(config_file):
+    with open(config_file, 'r') as file:
+        return yaml.safe_load(file)
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--debug', action='store_true', help='Print debug information to text file.')
+parser.add_argument('-c', '--config', default='config.yml', help='Path to the config file')
 args = parser.parse_args()
 
-with open('config.yml', 'r') as file:
-    config = yaml.safe_load(file)
-    file.close()
+config = load_config(args.config)
 
 current_build = config['build_tag']
 current_incremental = config['incremental']
