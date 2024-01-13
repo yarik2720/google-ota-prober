@@ -91,6 +91,11 @@ try:
             print("OTA URL obtained: " + entry.value.decode())
             found = True
             break
+    if found:
+        for entry in response.setting:
+            if entry.name.decode() == "update_description":
+                print("\nCHANGELOG:\n" + entry.value.decode())
+                break
     if not found:
         print("No OTA URL found for your build. Either Google does not recognize your build fingerprint, or there are no new updates for your device.")
 except: # This should not happen.
