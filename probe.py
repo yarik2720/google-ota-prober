@@ -24,6 +24,8 @@ device = config['device']
 oem = config['oem']
 product = config['product']
 
+print("Checking device... " + model)
+
 headers = {
     'accept-encoding': 'gzip, deflate',
     'content-encoding': 'gzip',
@@ -101,6 +103,6 @@ try:
                 print("\nCHANGELOG:\n" + entry.value.decode())
                 break
     if not found:
-        print("No OTA URL found for your build. Either Google does not recognize your build fingerprint, or there are no new updates for your device.")
+        print("There are no new updates for your device.")
 except: # This should not happen.
     print("Unable to obtain OTA URL.")
