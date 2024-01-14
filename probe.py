@@ -93,6 +93,10 @@ try:
             break
     if found:
         for entry in response.setting:
+            if entry.name.decode() == "update_title":
+                print("\nTITLE:\n" + entry.value.decode())
+                break
+        for entry in response.setting:
             if entry.name.decode() == "update_description":
                 print("\nCHANGELOG:\n" + entry.value.decode())
                 break
