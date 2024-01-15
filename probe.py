@@ -25,6 +25,7 @@ oem = config['oem']
 product = config['product']
 
 print("Checking device... " + model)
+print("Current version... " + current_incremental)
 
 headers = {
     'accept-encoding': 'gzip, deflate',
@@ -90,10 +91,11 @@ try:
             f.close()
     for entry in response.setting:
         if b'https://android.googleapis.com' in entry.value:
-            print("OTA URL obtained: " + entry.value.decode())
+            otaurl = entry.value.decode()
             found = True
             break
     if found:
+        print("\nUpdate found....")
         for entry in response.setting:
             if entry.name.decode() == "update_title":
                 print("\nTITLE:\n" + entry.value.decode())
@@ -102,6 +104,7 @@ try:
             if entry.name.decode() == "update_description":
                 print("\nCHANGELOG:\n" + entry.value.decode())
                 break
+        print("\nOTA URL obtained: " + otaurl)
     if not found:
         print("There are no new updates for your device.")
 except: # This should not happen.
