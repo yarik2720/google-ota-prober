@@ -3,9 +3,9 @@
 #   <oem>/<product>/<device>:<android_version>/<build_tag>/<incremental>:user/release-keys
 
 oem: "Infinix"             # The company that made your device (e.g. Samsung)
-product: "X678B-OP"         # The product code. May be same as device code or model code.
+product: "X678B-RU"         # The product code. May be same as device code or model code.
 device: "Infinix-X678B"          # The device code. May be same as model code.
 android_version: "13" # Only put in the major version number.
 build_tag: "TP1A.220624.014"       # Example: RKQ1.211119.001
-incremental: "240108V3414"     # Example: 2206131341
+incremental: "240105V3395"     # Example: 2206131341
 model: "Infinix NOTE 30 Pro"           # The model code. (e.g. SM-T380)
