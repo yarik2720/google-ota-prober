@@ -43,6 +43,7 @@ response = checkin_generator_pb2.AndroidCheckinResponse()
 build.id = f'{oem}/{product}/{device}:{android_version}/{current_build}/{current_incremental}:user/release-keys' # Put the build fingerprint here
 build.timestamp = 0
 build.device = device
+print(build.id)
 
 # Checkin proto
 checkinproto.build.CopyFrom(build)
