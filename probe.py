@@ -12,6 +12,7 @@ def load_config(config_file):
 parser = argparse.ArgumentParser()
 parser.add_argument('--debug', action='store_true', help='Print debug information to text file.')
 parser.add_argument('-c', '--config', default='config.yml', help='Path to the config file')
+parser.add_argument('--download', action='store_true', help='Download the OTA file.')
 args = parser.parse_args()
 
 config = load_config(args.config)
@@ -70,20 +71,15 @@ payload.userSerialNumber = 0
 payload.fetchSystemUpdates = 1
 payload.unknown30 = 0
 
-with open('test_data.txt', 'wb') as f:
-    f.write(payload.SerializeToString())
-    f.close()
-
-with open('test_data.txt', 'rb') as f_in:
-    with gzip.open('test_data.gz', 'wb') as f_out:
-        shutil.copyfileobj(f_in, f_out)
-        f_out.close()
-    f_in.close()
+with gzip.open('test_data.gz', 'wb') as f_out:
+    f_out.write(payload.SerializeToString())
+    f_out.close()
 
 post_data = open('test_data.gz', 'rb')
 r = requests.post('https://android.googleapis.com/checkin', data=post_data, headers=headers)
 post_data.close()
 try:
+    download_url = ""
     found = False
     response.ParseFromString(r.content)
     if args.debug:
@@ -94,6 +90,7 @@ try:
         if b'https://android.googleapis.com' in entry.value:
             otaurl = entry.value.decode()
             found = True
+            download_url = entry.value.decode()
             break
     if found:
         print("\nUpdate found....")
@@ -106,6 +103,25 @@ try:
                 print("\nCHANGELOG:\n" + entry.value.decode())
                 break
         print("\nOTA URL obtained: " + otaurl)
+    if args.download:
+        print("Downloading OTA file")
+        with requests.get(download_url, stream=True) as resp:
+            resp.raise_for_status()
+            filename = download_url.split('/')[-1]
+
+            total_size = int(resp.headers.get('content-length', 0))
+            chunk_size = 1024
+
+            with open(filename, 'wb') as file:
+                progress = 0
+
+                for chunk in resp.iter_content(chunk_size=chunk_size):
+                    if chunk:
+                        file.write(chunk)
+                        progress += len(chunk)
+                        percentage = (progress / total_size) * 100
+                        print(f"Downloaded {progress} of {total_size} bytes ({percentage:.2f}%)", end="\r")
+            print(f"File downloaded and saved as {filename}!")
     if not found:
         print("There are no new updates for your device.")
 except: # This should not happen.
