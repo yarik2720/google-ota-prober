@@ -44,7 +44,7 @@ response = checkin_generator_pb2.AndroidCheckinResponse()
 build.id = f'{oem}/{product}/{device}:{android_version}/{current_build}/{current_incremental}:user/release-keys' # Put the build fingerprint here
 build.timestamp = 0
 build.device = device
-print(build.id)
+print("Fingerprint... " + build.id)
 
 # Checkin proto
 checkinproto.build.CopyFrom(build)
@@ -103,6 +103,10 @@ try:
                 print("\nCHANGELOG:\n" + entry.value.decode())
                 break
         print("\nOTA URL obtained: " + otaurl)
+        for entry in response.setting:
+            if entry.name.decode() == "update_size":
+                print("SIZE: " + entry.value.decode())
+                break
     if args.download:
         print("Downloading OTA file")
         with requests.get(download_url, stream=True) as resp:
