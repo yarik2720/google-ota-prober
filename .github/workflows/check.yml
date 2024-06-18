@@ -1,0 +1,22 @@
+name: GH Actions Cron Schedule
+on:
+  schedule:
+    - cron:  '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v4
+    - name: Prepare the environment
+      run: |
+        pip install -r requirements.txt
+        
+    - name: Check ota
+      shell: bash
+      env:
+        bot_token: ${{ secrets.BOT_TOKEN }}
+        chat_id: ${{ secrets.CHAT_ID }}
+      run: |
+        for file in config-*.yml; do python probe2.py -c $file; done
