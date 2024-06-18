@@ -1,3 +1,14 @@
+# CONFIG SUPPORT
+* TECNO SPARK 20 Pro+ (KJ7)
+* TECNO POVA 6 (LI7)
+* Infinix ZERO 30 4G (X6731B)
+* Infinix NOTE 12 2023 (X676C)
+* Infinix NOTE 30 (X6833B)
+* Infinix NOTE 30 Pro (X678B)
+* Infinix NOTE 40 4G (X6853)
+* Infinix NOTE 40 Pro 4G (X6850)
+* Infinix GT 20 Pro (X6871)
+
 # Google OTA prober
 
 This program is designed to obtain URLs to over-the-air (OTA) update packages from Google's servers for a specified device.
