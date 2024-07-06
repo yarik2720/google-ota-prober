@@ -9,6 +9,7 @@
 * Infinix NOTE 30 Pro (X678B)
 * Infinix NOTE 40 4G (X6853)
 * Infinix NOTE 40 Pro 4G (X6850)
+* Infinix ZERO 40 5G (X6861)
 * Infinix GT 20 Pro (X6871)
 
 # Google OTA prober
