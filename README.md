@@ -4,6 +4,7 @@
 * TECNO POVA 5 (LH7n)
 * TECNO POVA 6 (LI7)
 * Infinix ZERO 30 4G (X6731B)
+* Infinix GT 10 Pro (X6739)
 * Infinix NOTE 12 2023 (X676C)
 * Infinix NOTE 30 (X6833B)
 * Infinix NOTE 30 Pro (X678B)
