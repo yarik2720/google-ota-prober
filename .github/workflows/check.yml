@@ -19,4 +19,4 @@ jobs:
         bot_token: ${{ secrets.BOT_TOKEN }}
         chat_id: ${{ secrets.CHAT_ID }}
       run: |
-        for file in configs/config-*.yml; do python probe2.py -c $file; done
+        for file in configs/config-*.yml; do python probe2.py -c $file && echo "//"; done
