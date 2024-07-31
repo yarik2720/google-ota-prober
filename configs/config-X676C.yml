@@ -7,5 +7,5 @@ product: "X676C-OP"         # The product code. May be same as device code or mo
 device: "Infinix-X676C"          # The device code. May be same as model code.
 android_version: "12" # Only put in the major version number.
 build_tag: "SP1A.210812.016"       # Example: RKQ1.211119.001
-incremental: "240520V1788"     # Example: 2206131341
+incremental: "240711V1794"     # Example: 2206131341
 model: "Infinix NOTE 12 2023"           # The model code. (e.g. SM-T380)
