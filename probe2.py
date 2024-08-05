@@ -6,12 +6,39 @@ from utils import functions
 import argparse, requests, gzip, shutil, os, yaml, re, sys
 import json, datetime
 
-def send_telegram_message(bot_token, chat_id, message):
-    response = requests.post(f"https://api.telegram.org/bot{bot_token}/sendMessage", data={'chat_id': chat_id, 'text': message})
+def send_telegram_message(bot_token, chat_id, message, button_text, button_url):
+    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    payload = {
+        'chat_id': chat_id,
+        'text': message,
+        'parse_mode': 'MarkdownV2',
+        'reply_markup': {
+            'inline_keyboard': [[
+                {
+                    'text': button_text,
+                    'url': button_url
+                }
+            ]]
+        }
+    }
+    response = requests.post(url, json=payload)
+
+    if response.status_code != 200:
+        print(f"Failed to send message. Status code: {response.status_code}")
+        print(f"Response: {response.text}")
+    else:
+        print("Message sent successfully")
+
     return response.json()
 
+def escape_markdown_v2(text):
+    escape_chars = r"_*[]()~`>#+-=|{}.!"
+    return ''.join(['\\' + char if char in escape_chars else char for char in text])
+
 def remove_html_tags(text):
-    return re.sub('<.*?>', '', text)
+    text = re.sub('<.*?>', '', text)
+    text = re.sub(r'\s*\(http[s]?://\S+\)?', '', text)
+    return text.strip()
 
 def load_config(config_file):
     with open(config_file, 'r') as file:
@@ -118,10 +145,11 @@ except:
     print("Unable to obtain OTA URL.")
 
 # Send update information to Telegram
-message = f"Update available for {model}:\n\n"
+message = f"*Update available for {escape_markdown_v2(model.upper())}*\n\n"
 if update_info[config_name]['found']:
-    message += f"Title:\n{update_info[config_name]['title']}\n\n"
-    message += f"Description:\n{update_info[config_name]['description']}\n\n"
-    message += f"Size: {update_info[config_name]['size']}\n\n"
-    message += f"URL: {update_info[config_name]['url']}\n"
-    send_telegram_message(bot_token, chat_id, message)
+    message += f"*Title:*\n{escape_markdown_v2(update_info[config_name]['title'])}\n\n"
+    message += f"*Description:*\n{escape_markdown_v2(update_info[config_name]['description'])}\n\n"
+    message += f"*Size:* {escape_markdown_v2(update_info[config_name]['size'])}\n\n"
+    button_text = "Google OTA Link"
+    button_url = update_info[config_name]['url']
+    send_telegram_message(bot_token, chat_id, message, button_text, button_url)
