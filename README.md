@@ -1,4 +1,7 @@
 # CONFIG SUPPORT
+* TECNO PHANTOM V Fold2 5G (AE10)
+* TECNO PHANTOM V Flip2 5G (AE11)
+* TECNO CAMON 20 Pro 5G (CK8n)
 * TECNO CAMON 30 Pro 5G (CL8)
 * TECNO SPARK 20 Pro+ (KJ7)
 * TECNO POVA 5 (LH7n)
@@ -8,7 +11,9 @@
 * Infinix NOTE 12 2023 (X676C)
 * Infinix NOTE 30 Pro (X678B)
 * Infinix NOTE 30 (X6833B)
+* Infinix NOTE 40X 5G (X6838)
 * Infinix NOTE 40 Pro 4G (X6850)
+* Infinix NOTE 40 5G (X6852)
 * Infinix NOTE 40 4G (X6853)
 * Infinix ZERO 40 5G (X6861)
 * Infinix GT 20 Pro (X6871)
