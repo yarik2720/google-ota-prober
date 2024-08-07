@@ -6,6 +6,7 @@
 * TECNO SPARK 20 Pro+ (KJ7)
 * TECNO POVA 5 (LH7n)
 * TECNO POVA 6 (LI7)
+* itel P55 5G (P661N)
 * Infinix ZERO 30 4G (X6731B)
 * Infinix GT 10 Pro (X6739)
 * Infinix NOTE 12 2023 (X676C)
