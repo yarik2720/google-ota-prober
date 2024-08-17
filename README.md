@@ -1,4 +1,8 @@
 # CONFIG SUPPORT
+<details>
+  <summary>List of supported configs</summary>
+<br>
+
 * TECNO PHANTOM V Fold2 5G (AE10)
 * TECNO PHANTOM V Flip2 5G (AE11)
 * TECNO CAMON 20 Pro 5G (CK8n)
@@ -21,6 +25,7 @@
 * Infinix NOTE 40 4G (X6853)
 * Infinix ZERO 40 5G (X6861)
 * Infinix GT 20 Pro (X6871)
+</details>
 
 # Google OTA prober
 
