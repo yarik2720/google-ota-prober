@@ -15,6 +15,7 @@
 * Infinix NOTE 30 (X6833B)
 * Infinix NOTE 40X 5G (X6838)
 * Infinix NOTE 40 Pro 4G (X6850)
+* Infinix NOTE 40 Pro 5G (X6851)
 * Infinix NOTE 40 Pro Plus 5G (X6851B)
 * Infinix NOTE 40 5G (X6852)
 * Infinix NOTE 40 4G (X6853)
