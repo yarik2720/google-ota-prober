@@ -1,7 +1,6 @@
 # CONFIG SUPPORT
 <details>
   <summary>List of supported configs</summary>
-<br>
 
 * TECNO PHANTOM V Fold2 5G (AE10)
 * TECNO PHANTOM V Flip2 5G (AE11)
