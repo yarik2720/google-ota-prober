@@ -23,6 +23,7 @@
 * Infinix NOTE 40 Pro Plus 5G (X6851B)
 * Infinix NOTE 40 5G (X6852)
 * Infinix NOTE 40 4G (X6853)
+* Infinix ZERO 40 4G (X6860)
 * Infinix ZERO 40 5G (X6861)
 * Infinix GT 20 Pro (X6871)
 </details>
