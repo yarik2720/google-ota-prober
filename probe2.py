@@ -8,6 +8,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 
 # Third-party imports
@@ -222,6 +223,22 @@ def main():
     
     except Exception as e:
         print(f"Unable to obtain OTA URL. Error: {str(e)}")
+
+    # Extract update title from the response
+    update_title = update_info[config_name].get("title", "")
+
+    # Check if the GitHub release already exists
+    try:
+        subprocess.run(
+            ["gh", "release", "view", update_title],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=True
+        )
+        print(f"Release with title '{update_title}' already exists. Skipping post.")
+        return  # Exit the main function to skip posting
+    except subprocess.CalledProcessError:
+        print("Release not found. Proceeding with posting...")
 
     # Prepare and send Telegram message with update information
     message = f"*Update available for {escape_markdown_v2(model.upper())}*\n\n"
