@@ -16,6 +16,7 @@
 * TECNO POVA 6 (LI7)
 * TECNO POVA 6 Pro (LI9)
 * itel P55 5G (P661N)
+* itel P65 (P671L)
 * itel RS4 (S666LN)
 * Infinix ZERO 30 4G (X6731B)
 * Infinix GT 10 Pro (X6739)
