@@ -18,6 +18,7 @@
 * itel P55 5G (P661N)
 * itel P65 (P671L)
 * itel RS4 (S666LN)
+* Infinix HOT 20 5G (X666)
 * Infinix ZERO 30 4G (X6731B)
 * Infinix GT 10 Pro (X6739)
 * Infinix NOTE 12 2023 (X676C)
