@@ -23,6 +23,7 @@
 * Infinix HOT 20 5G (X666)
 * Infinix ZERO 30 (X6731B)
 * Infinix GT 10 Pro (X6739)
+* Infinix NOTE 12 Pro 5G (X671B)
 * Infinix NOTE 12 2023 (X676C)
 * Infinix NOTE 30 VIP (X6710)
 * Infinix NOTE 30 5G (X6711)
