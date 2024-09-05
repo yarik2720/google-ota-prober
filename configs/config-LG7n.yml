@@ -7,5 +7,5 @@ product: "LG7n-GL"         # The product code. May be same as device code or mod
 device: "TECNO-LG7n"          # The device code. May be same as model code.
 android_version: "12" # Only put in the major version number.
 build_tag: "SP1A.210812.016"       # Example: RKQ1.211119.001
-incremental: "240628V1782"     # Example: 2206131341
+incremental: "240816V1799"     # Example: 2206131341
 model: "TECNO POVA 4"           # The model code. (e.g. SM-T380)
