@@ -49,6 +49,7 @@
 * Infinix ZERO 30 4G (X6731B)
 * Infinix ZERO 40 4G (X6860)
 * Infinix ZERO 40 5G (X6861)
+* Infinix ZERO Flip (X6962)
 
 ## GT SERIES
 * Infinix GT 10 Pro (X6739)
