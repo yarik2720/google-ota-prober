@@ -41,6 +41,8 @@
 * Infinix ZERO 40 4G (X6860)
 * Infinix ZERO 40 5G (X6861)
 * Infinix GT 20 Pro (X6871)
+* Infinix HOT 50 5G (X6720B)
+* Infinix HOT 50 Pro (X6881)
 * Infinix HOT 50 (X6882)
 </details>
 
