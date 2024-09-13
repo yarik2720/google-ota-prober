@@ -1,15 +1,22 @@
 # CONFIG SUPPORT
 <details>
-  <summary>List of supported configs</summary>
+  <summary>List of supported Transsion devices</summary>
 
+## PHANTOM SERIES
 * TECNO PHANTOM V Fold2 5G (AE10)
 * TECNO PHANTOM V Flip2 5G (AE11)
+
+## CAMON SERIES
 * TECNO CAMON 20 Pro (CK7n)
 * TECNO CAMON 20 Pro 5G (CK8n)
 * TECNO CAMON 30 Pro 5G (CL8)
 * TECNO CAMON 30S (CLA5)
 * TECNO CAMON 30S Pro (CLA6)
+
+## SPARK SERIES
 * TECNO SPARK 20 Pro+ (KJ7)
+
+## POVA SERIES
 * TECNO POVA 4 (LG7n)
 * TECNO POVA 4 Pro (LG8n)
 * TECNO POVA Neo 3 (LH6n)
@@ -18,14 +25,33 @@
 * TECNO POVA 6 Neo (LI6)
 * TECNO POVA 6 (LI7)
 * TECNO POVA 6 Pro (LI9)
+
+## ITEL
 * itel P55 5G (P661N)
 * itel P65 (P671L)
 * itel RS4 (S666LN)
+
+## XPAD
 * Infinix XPAD (X1101)
+
+## HOT SERIES
 * Infinix HOT 20 5G (X666)
+* Infinix HOT 50i (X6531)
+* Infinix HOT 50 5G (X6720B)
+* Infinix HOT 50 Pro (X6881)
+* Infinix HOT 50 (X6882)
+
+## ZERO SERIES
 * Infinix ZERO 30 5G (X6731)
 * Infinix ZERO 30 4G (X6731B)
+* Infinix ZERO 40 4G (X6860)
+* Infinix ZERO 40 5G (X6861)
+
+## GT SERIES
 * Infinix GT 10 Pro (X6739)
+* Infinix GT 20 Pro (X6871)
+
+## NOTE SERIES
 * Infinix NOTE 12 Pro 5G (X671B)
 * Infinix NOTE 12 2023 (X676C)
 * Infinix NOTE 30 VIP (X6710)
@@ -40,13 +66,6 @@
 * Infinix NOTE 40 Pro+ 5G (X6851B)
 * Infinix NOTE 40 5G (X6852)
 * Infinix NOTE 40 (X6853)
-* Infinix ZERO 40 4G (X6860)
-* Infinix ZERO 40 5G (X6861)
-* Infinix GT 20 Pro (X6871)
-* Infinix HOT 50i (X6531)
-* Infinix HOT 50 5G (X6720B)
-* Infinix HOT 50 Pro (X6881)
-* Infinix HOT 50 (X6882)
 </details>
 
 # Google OTA prober
