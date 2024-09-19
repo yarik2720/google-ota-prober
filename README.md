@@ -41,6 +41,7 @@
 * Infinix HOT 20 5G (X666)
 * Infinix HOT 50i (X6531)
 * Infinix HOT 50 5G (X6720B)
+* Infinix HOT 50 Pro+ (X6880)
 * Infinix HOT 50 Pro (X6881)
 * Infinix HOT 50 (X6882)
 
