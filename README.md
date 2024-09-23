@@ -42,7 +42,7 @@
 * Infinix HOT 40i (X6528) (X6528B)
 * Infinix HOT 40 (X6836)
 * Infinix HOT 40 Pro (X6837)
-* Infinix HOT 50i (X6531)
+* Infinix HOT 50i (X6531) (X6531B)
 * Infinix HOT 50 5G (X6720B)
 * Infinix HOT 50 Pro+ (X6880)
 * Infinix HOT 50 Pro (X6881)
