@@ -133,6 +133,8 @@ def main():
 
     print(f"Checking device... {config['model']}")
     print(f"Current version... {config['incremental']}")
+    fp = f'{config["oem"]}/{config["product"]}/{config["device"]}:{config["android_version"]}/{config["build_tag"]}/{config["incremental"]}:user/release-keys'
+    print("Fingerprint... " + fp)
 
     headers = create_headers(config['android_version'], config['model'], config['build_tag'])
     payload = create_payload(config)
