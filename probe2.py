@@ -241,7 +241,7 @@ def main():
         print("Release not found. Proceeding with posting...")
 
     # Prepare and send Telegram message with update information
-    message = f"*Update available for {escape_markdown_v2(model.upper())}*\n\n"
+    message = f"*Update available for {escape_markdown_v2(model)}*\n\n"
     if update_info[config_name]['found']:
         message += f"*Title:*\n{escape_markdown_v2(update_info[config_name]['title'])}\n\n"
         message += f"*Description:*\n{escape_markdown_v2(update_info[config_name]['description'])}\n\n"
