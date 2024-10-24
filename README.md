@@ -34,6 +34,8 @@
 * itel P55 5G (P661N)
 * itel P65 (P671L)
 * itel RS4 (S666LN)
+* itel S25 (S685LN)
+* itel S25 Ultra (S686LN)
 
 ## XPAD
 * Infinix XPAD (X1101)
