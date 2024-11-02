@@ -7,5 +7,5 @@ product: "X678B-OP"         # The product code. May be same as device code or mo
 device: "Infinix-X678B"          # The device code. May be same as model code.
 android_version: "14" # Only put in the major version number.
 build_tag: "UP1A.231005.007"       # Example: RKQ1.211119.001
-incremental: "240815V762"     # Example: 2206131341
+incremental: "241021V802"     # Example: 2206131341
 model: "Infinix NOTE 30 Pro"           # The model code. (e.g. SM-T380)
