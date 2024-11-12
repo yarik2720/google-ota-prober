@@ -35,6 +35,7 @@
 * TECNO POVA 6 Pro (LI9)
 
 ## ITEL
+* itel A80 (A671LC)
 * itel P55 5G (P661N)
 * itel P65 (P671L)
 * itel RS4 (S666LN)
