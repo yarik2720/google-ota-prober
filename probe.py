@@ -13,17 +13,39 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--debug', action='store_true', help='Print debug information to text file.')
 parser.add_argument('-c', '--config', default='config.yml', help='Path to the config file')
 parser.add_argument('--download', action='store_true', help='Download the OTA file.')
+parser.add_argument('--fingerprint', help='Get the OTA using this fingerprint. Reading the config YML file is skipped.')
+parser.add_argument('--model', help='Specify the model of the device. Required with --fingerprint.')
 args = parser.parse_args()
 
-config = load_config(args.config)
+if args.fingerprint:
+    config = args.fingerprint.split('/')
+    # Split "<device>:<android_version">
+    temp = config[2].split(':')
+    # Drop, then reinsert as two separate entries
+    config.pop(2)
+    config.insert(2, temp[0])
+    config.insert(3, temp[1])
+else:
+    config = load_config(args.config)
 
-current_build = config['build_tag']
-current_incremental = config['incremental']
-android_version = config['android_version']
-model = config['model']
-device = config['device']
-oem = config['oem']
-product = config['product']
+# <oem>/<product>/<device>:<android_version>/<build_tag>/<incremental>:user/release-keys
+if not args.fingerprint:
+    current_build = config['build_tag']
+    current_incremental = config['incremental']
+    android_version = config['android_version']
+    model = config['model']
+    device = config['device']
+    oem = config['oem']
+    product = config['product']
+else:
+    current_build = config[4]
+    android_version = config[3]
+    device = config[2]
+    if args.model:
+        model = args.model
+    else:
+        print('You must specify a model with --model when using --fingerprint.')
+        exit(1)
 
 print("Checking device... " + model)
 print("Current version... " + current_incremental)
@@ -41,7 +63,10 @@ build = checkin_generator_pb2.AndroidBuildProto()
 response = checkin_generator_pb2.AndroidCheckinResponse()
 
 # Add build properties
-build.id = f'{oem}/{product}/{device}:{android_version}/{current_build}/{current_incremental}:user/release-keys' # Put the build fingerprint here
+if args.fingerprint:
+    build.id = args.fingerprint
+else:
+    build.id = f'{oem}/{product}/{device}:{android_version}/{current_build}/{current_incremental}:user/release-keys' # Put the build fingerprint here
 build.timestamp = 0
 build.device = device
 print("Fingerprint... " + build.id)
@@ -80,34 +105,25 @@ r = requests.post('https://android.googleapis.com/checkin', data=post_data, head
 post_data.close()
 try:
     download_url = ""
-    found = False
     response.ParseFromString(r.content)
     if args.debug:
         with open('debug.txt', 'w') as f:
             f.write(text_format.MessageToString(response))
             f.close()
-    for entry in response.setting:
-        if b'https://android.googleapis.com' in entry.value:
-            otaurl = entry.value.decode()
-            found = True
-            download_url = entry.value.decode()
-            break
-    if found:
-        print("\nUpdate found....")
-        for entry in response.setting:
-            if entry.name.decode() == "update_title":
-                print("\nTITLE:\n" + entry.value.decode())
-                break
-        for entry in response.setting:
-            if entry.name.decode() == "update_description":
-                print("\nCHANGELOG:\n" + entry.value.decode())
-                break
-        print("\nOTA URL obtained: " + otaurl)
-        for entry in response.setting:
-            if entry.name.decode() == "update_size":
-                print("SIZE: " + entry.value.decode())
-                break
-    if args.download:
+    setting = {entry.name: entry.value for entry in response.setting}
+    update_title = setting.get(b'update_title', b'').decode()
+    if update_title:
+        print("Update found....")
+        print("Update title: " + update_title)
+        update_desc = setting.get(b'update_description', b'').decode()
+        print("Update changelogs:\n" + update_desc)
+        download_url = setting.get(b'update_url', b'').decode()
+        print("OTA URL obtained: " + download_url)
+        download_size = setting.get(b'update_size', b'').decode()
+        print("OTA SIZE: " + download_size)
+    else:
+        print("No OTA URL found for your build. Either Google does not recognize your build fingerprint, or there are no new updates for your device.")
+    if args.download and download_url:
         print("Downloading OTA file")
         with requests.get(download_url, stream=True) as resp:
             resp.raise_for_status()
@@ -126,7 +142,5 @@ try:
                         percentage = (progress / total_size) * 100
                         print(f"Downloaded {progress} of {total_size} bytes ({percentage:.2f}%)", end="\r")
             print(f"File downloaded and saved as {filename}!")
-    if not found:
-        print("There are no new updates for your device.")
 except: # This should not happen.
     print("Unable to obtain OTA URL.")
