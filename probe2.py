@@ -59,6 +59,7 @@ def remove_html_tags(text):
     """
     Remove HTML tags and URLs from the given text.
     """
+    text = re.sub('<br\s*/?>\n', '<br>', text)
     text = re.sub('<br\s*/?>', '\n', text)  # Replace <br> tags with newlines
     text = re.sub('<.*?>', '', text)
     text = re.sub(r'\s*\(http[s]?://\S+\)?', '', text)
