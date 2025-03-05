@@ -158,7 +158,7 @@ class UpdateChecker:
             for entry in response.setting:
                 name = entry.name.decode()
                 if name == 'update_title':
-                    update_info['title'] = entry.value.decode()
+                    update_info['title'] = self._tidy_title(entry.value.decode())
                 elif name == 'update_description':
                     update_info['description'] = self._clean_description(entry.value.decode())
                 elif name == 'update_size':
@@ -172,6 +172,11 @@ class UpdateChecker:
         text = re.sub(r'<br\s*/?>', '\n', text)
         text = re.sub('<.*?>', '', text)
         text = re.sub(r'\s*\(http[s]?://\S+\)?', '', text)
+        return text.strip()
+
+    @staticmethod
+    def _tidy_title(text: str) -> str:
+        text = re.sub(r' ', '', text)
         return text.strip()
 
 class UpdateManager:
