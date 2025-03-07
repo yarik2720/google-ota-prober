@@ -93,6 +93,8 @@
 * Infinix NOTE 40 Pro+ 5G (X6851B)
 * Infinix NOTE 40 5G (X6852)
 * Infinix NOTE 40 (X6853)
+* Infinix NOTE 50 Pro 4G (X6855)
+* Infinix NOTE 50 4G (X6858)
 </details>
 
 # Google OTA prober
