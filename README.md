@@ -18,6 +18,7 @@
 * TECNO CAMON 30 Premier 5G (CL9)
 * TECNO CAMON 30S (CLA5)
 * TECNO CAMON 30S Pro (CLA6)
+* TECNO CAMON 40 Pro 4G (CM6)
 
 ## SPARK SERIES
 * TECNO SPARK Go 1 (KL4)
@@ -94,6 +95,7 @@
 * Infinix NOTE 40 5G (X6852)
 * Infinix NOTE 40 (X6853)
 * Infinix NOTE 50 Pro 4G (X6855)
+* Infinix NOTE 50 Pro+ 5G (X6856)
 * Infinix NOTE 50 4G (X6858)
 </details>
 
