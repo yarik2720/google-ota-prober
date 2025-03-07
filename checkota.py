@@ -6,6 +6,7 @@ import gzip
 import json
 import os
 import re
+import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -196,7 +197,6 @@ class UpdateManager:
     def check_existing_release(self, title: str) -> bool:
         Logger.info(f"Checking for existing release...")
         try:
-            import subprocess
             subprocess.run(
                 ["gh", "release", "view", title],
                 stdout=subprocess.DEVNULL,
@@ -252,10 +252,23 @@ def main():
 
         # Prepare notification message
         Logger.info("Preparing notification message...")
+
+        cmd = (
+            f"curl -Ls --limit-rate 100K {update_data['url']} "
+            "| ( bsdtar -Oxf - 'META-INF/com/android/metadata' 2>/dev/null || true ) "
+            "| ( grep -m1 '^post-build=' | sed 's/^post-build=//' && killall curl ) "
+            "2>/dev/null"
+        )
+
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+
+        fingerprint = result.stdout.strip()
+
         message = (
             f"<blockquote><b>OTA update available for {config.model}</b></blockquote>\n\n"
             f"<b>{update_data['title']}</b>\n\n"
             f"{update_data['description']}\n\n"
+            f"Fingerprint:\n<code>{fingerprint}</code>\n\n"
             f"Size: {update_data['size']}\n\n"
         )
 
