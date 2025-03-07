@@ -168,7 +168,7 @@ class UpdateChecker:
 
     @staticmethod
     def _clean_description(text: str) -> str:
-        text = re.sub(r'<br\s*/?>\n', '<br>', text)
+        text = re.sub(r'\n', '', text)
         text = re.sub(r'<br\s*/?>', '\n', text)
         text = re.sub('<.*?>', '', text)
         text = re.sub(r'\s*\(http[s]?://\S+\)?', '', text)
