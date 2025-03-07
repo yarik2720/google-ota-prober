@@ -3,6 +3,8 @@
   <summary>List of supported Transsion devices</summary>
 
 ## PHANTOM SERIES
+* TECNO PHANTOM X2 (AD8)
+* TECNO PHANTOM X2 Pro (AD9)
 * TECNO PHANTOM V Fold2 5G (AE10)
 * TECNO PHANTOM V Flip2 5G (AE11)
 
