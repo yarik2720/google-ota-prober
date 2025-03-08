@@ -1,5 +1,10 @@
 debug.txt
 test_data.txt
+fingerprints.txt
 *.gz
 *.zip
 __pycache__
+
+# non-python output
+build/
+.venv/
