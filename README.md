@@ -32,9 +32,6 @@
 * TECNO SPARK 30C 5G (KL8H)
 
 ## POVA SERIES
-* TECNO POVA Neo 2 (LG6n)
-* TECNO POVA 4 (LG7n)
-* TECNO POVA 4 Pro (LG8n)
 * TECNO POVA Neo 3 (LH6n)
 * TECNO POVA 5 (LH7n)
 * TECNO POVA 5 Pro (LH8n)
@@ -57,7 +54,6 @@
 * Infinix XPAD (X1101)
 
 ## HOT SERIES
-* Infinix HOT 20 5G (X666)
 * Infinix HOT 40i (X6528) (X6528B)
 * Infinix HOT 40 (X6836)
 * Infinix HOT 40 Pro (X6837)
@@ -79,11 +75,8 @@
 * Infinix GT 20 Pro (X6871)
 
 ## NOTE SERIES
-* Infinix NOTE 12 Pro 5G (X671B)
-* Infinix NOTE 12 2023 (X676C)
 * Infinix NOTE 30 VIP (X6710)
 * Infinix NOTE 30 5G (X6711)
-* Infinix NOTE 30i (X6716)
 * Infinix NOTE 30 (Helio G85) (X6716B)
 * Infinix NOTE 30 Pro (X678B)
 * Infinix NOTE 30 (X6833B)
@@ -97,6 +90,15 @@
 * Infinix NOTE 50 Pro 4G (X6855)
 * Infinix NOTE 50 Pro+ 5G (X6856)
 * Infinix NOTE 50 4G (X6858)
+
+## END OF SUPPORT
+* TECNO POVA Neo 2 (LG6n): 240924V1965
+* TECNO POVA 4 (LG7n): 240816V1799
+* TECNO POVA 4 Pro (LG8n): 240531V2678
+* Infinix HOT 20 5G (X666): 241011V1854
+* Infinix NOTE 12 2023 (X676C): 240912V1816
+* Infinix NOTE 12 Pro 5G (X671B): 240511V664
+* Infinix NOTE 30i (X6716): 230712V952
 </details>
 
 # Google OTA prober
