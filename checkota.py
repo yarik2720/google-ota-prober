@@ -123,7 +123,7 @@ class UpdateChecker:
         Logger.info("Checking for updates...")
         payload = self._prepare_checkin_request()
         compressed_payload = gzip.compress(payload.SerializeToString())
-        
+
         response = requests.post(
             'https://android.googleapis.com/checkin',
             data=compressed_payload,
@@ -214,19 +214,33 @@ def main():
     parser.add_argument('--debug', action='store_true', help='Print debug information')
     parser.add_argument('-c', '--config', default='config.yml', help='Path to config file')
     parser.add_argument('--download', action='store_true', help='Download OTA file')
+    parser.add_argument('--skip-telegram', action='store_true', help='Skip Telegram notification')
+    parser.add_argument('--skip-git', action='store_true', help='Skip GitHub release check')
     args = parser.parse_args()
 
     try:
-        bot_token = os.environ['bot_token']
-        chat_id = os.environ['chat_id']
-    except KeyError as e:
-        Logger.error(f"Environment variable {e} is not set")
+        # Only get environment variables if not skipping Telegram
+        bot_token = os.environ.get('bot_token', '') if not args.skip_telegram else ''
+        chat_id = os.environ.get('chat_id', '') if not args.skip_telegram else ''
+
+        # Check for required environment variables only if not skipping Telegram
+        if not args.skip_telegram and (not bot_token or not chat_id):
+            missing_vars = []
+            if not bot_token:
+                missing_vars.append('bot_token')
+            if not chat_id:
+                missing_vars.append('chat_id')
+            Logger.error(f"Environment variable(s) {', '.join(missing_vars)} not set")
+            return 1
+
+    except Exception as e:
+        Logger.error(f"Error with environment variables: {str(e)}")
         return 1
 
     try:
         config = Config.from_yaml(args.config)
         update_checker = UpdateChecker(config)
-        telegram = TelegramNotifier(bot_token, chat_id)
+        telegram = TelegramNotifier(bot_token, chat_id) if not args.skip_telegram else None
         update_manager = UpdateManager(args.config)
 
         Logger.info(f"Device: {config.model}")
@@ -243,7 +257,8 @@ def main():
             return 0
 
         if update_data.get('title'):
-            if update_manager.check_existing_release(update_data['title']):
+            # Check GitHub release if not skipping git
+            if not args.skip_git and update_manager.check_existing_release(update_data['title']):
                 Logger.info("Skipping notification for existing release")
                 return 0
         else:
@@ -272,14 +287,23 @@ def main():
             f"Size: {update_data['size']}\n\n"
         )
 
-        # Send notification with detailed status
-        try:
-            telegram.send_message(message, "Google OTA Link", update_data['url'])
-            Logger.success("Process completed successfully")
-            return 0
-        except requests.exceptions.RequestException as e:
-            Logger.error(f"Failed to send Telegram notification: {str(e)}")
-            return 1
+        # Print update information to console
+        Logger.success(f"Update found: {update_data['title']}")
+        Logger.info(f"Size: {update_data['size']}")
+        Logger.info(f"Fingerprint: {fingerprint}")
+        Logger.info(f"URL: {update_data['url']}")
+
+        # Send notification with detailed status if not skipping Telegram
+        if not args.skip_telegram:
+            try:
+                telegram.send_message(message, "Google OTA Link", update_data['url'])
+                Logger.success("Telegram notification sent successfully")
+            except requests.exceptions.RequestException as e:
+                Logger.error(f"Failed to send Telegram notification: {str(e)}")
+                return 1
+
+        Logger.success("Process completed successfully")
+        return 0
 
     except Exception as e:
         Logger.error(str(e))
