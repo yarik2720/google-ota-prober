@@ -285,6 +285,10 @@ class UpdateChecker:
                         info['description'] = self._clean_desc(value)
                     elif name == 'update_size':
                         info['size'] = value
+                    file_name = info['url'].split('/')[-1].split('.')[0]
+                    tag_name = f"{self.cfg.model}_{self.cfg.device}_{file_name}"
+                    tag_name = re.sub(r'[^\w-]', '_', tag_name)
+                    info['tag_name'] = tag_name
                 except:
                     continue
 
@@ -474,6 +478,7 @@ def main() -> int:
     title = data.get('title')
     url = data.get('url')
     size = data.get('size')
+    tag_name = data.get('tag_name')
     desc = data.get('description', 'No description')
 
     if not all([title, url, size]):
@@ -486,22 +491,9 @@ def main() -> int:
 
     # Get fingerprint without using proxy
     target_fp = get_fingerprint(url, None)
-    incremental = None
-    # Extract incremental from fingerprint (last part before :user)
-    if target_fp and ":" in target_fp:
-        parts = target_fp.split("/")
-        if len(parts) >= 5:
-            incremental = parts[-1].split(":")[0]
-
-    if incremental:
-        Log.i(f"Target build: {incremental}")
-        tag_name = f"{cfg.model}_{cfg.device}_{incremental}"
-        data['tag_name'] = tag_name
-    else:
-        tag_name = title
 
     if not args.skip_git:
-        if not tag_name or check_release(tag_name):
+        if check_release(tag_name):
             Log.i(f"GitHub release '{tag_name}' exists, skipping notification")
             return 0
 
