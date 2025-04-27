@@ -354,7 +354,14 @@ def get_fingerprint(url: str, proxy: Optional[str] = None) -> Optional[str]:
             Log.w("Could not extract fingerprint")
             return None
 
+        # Extract incremental from fingerprint (last part before :user)
         fp = result.stdout.strip()
+        if ":" in fp:
+            parts = fp.split("/")
+            if len(parts) >= 5:
+                incremental = parts[-1].split(":")[0]
+                fp = incremental
+
         Log.i(f"Extracted fingerprint: {fp}")
         return fp
 
@@ -484,8 +491,9 @@ def main() -> int:
     Log.i(f"URL: {url}")
 
     if not args.skip_git:
-        if check_release(title):
-            Log.i("GitHub release exists, skipping notification")
+        tag_name = f"{cfg.model}_{cfg.device}_{target_fp}" if target_fp else None
+        if not tag_name or check_release(tag_name):
+            Log.i(f"GitHub release '{tag_name}' exists, skipping notification")
             return 0
 
     # Get fingerprint without using proxy
