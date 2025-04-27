@@ -490,16 +490,16 @@ def main() -> int:
     Log.i(f"Size: {size}")
     Log.i(f"URL: {url}")
 
+    # Get fingerprint without using proxy
+    target_fp = get_fingerprint(url, None)
+    if target_fp != "N/A":
+        Log.i(f"Target build: {target_fp}")
+
     if not args.skip_git:
         tag_name = f"{cfg.model}_{cfg.device}_{target_fp}" if target_fp else None
         if not tag_name or check_release(tag_name):
             Log.i(f"GitHub release '{tag_name}' exists, skipping notification")
             return 0
-
-    # Get fingerprint without using proxy
-    target_fp = get_fingerprint(url, None)
-    if target_fp != "N/A":
-        Log.i(f"Target build: {target_fp}")
 
     if not args.skip_telegram and tg:
         msg = (
