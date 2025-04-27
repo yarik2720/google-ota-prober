@@ -6,6 +6,7 @@ if [ -f update_info.json ]; then
         new_update=$(jq -r ".[\"$config\"].found" update_info.json)
         if [ "$new_update" = "true" ]; then
           update_title=$(jq -r ".[\"$config\"].title" update_info.json)
+          tag_name=$(jq -r ".[\"$config\"].tag_name" update_info.json)
           update_device=$(jq -r ".[\"$config\"].device" update_info.json)
           update_description=$(jq -r ".[\"$config\"].description" update_info.json)
           update_url=$(jq -r ".[\"$config\"].url" update_info.json)
@@ -13,7 +14,7 @@ if [ -f update_info.json ]; then
 
           # Prepare release notes with proper Markdown formatting
           release_notes="
-# $update_device
+# $update_device ($tag_name)
 
 ## Changelog:
 $update_description
@@ -23,14 +24,14 @@ $update_description
 **Download URL:** $update_url
 "
 
-      # Check if a release with this title already exists
-      if ! gh release view "$update_title" &> /dev/null; then
-        gh release create "$update_title" \
-              --title "$update_title" \
+      # Check if release with this tag exists
+      if ! gh release view "$tag_name" &> /dev/null; then
+        gh release create "$tag_name" \
+              --title "$tag_name" \
               --notes "$release_notes"
-            echo "Created new release: $update_title for config $config"
+            echo "Created new release: $tag_name for config $config"
           else
-            echo "Release '$update_title' for config $config already exists. Skipping."
+            echo "Release '$tag_name' for config $config already exists. Skipping."
           fi
         else
           echo "No new updates found for config $config"

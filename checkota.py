@@ -260,7 +260,8 @@ class UpdateChecker:
             'title': None,
             'description': None,
             'size': None,
-            'url': None
+            'url': None,
+            'tag_name': None
         }
 
         for entry in resp.setting:
@@ -354,14 +355,7 @@ def get_fingerprint(url: str, proxy: Optional[str] = None) -> Optional[str]:
             Log.w("Could not extract fingerprint")
             return None
 
-        # Extract incremental from fingerprint (last part before :user)
         fp = result.stdout.strip()
-        if ":" in fp:
-            parts = fp.split("/")
-            if len(parts) >= 5:
-                incremental = parts[-1].split(":")[0]
-                fp = incremental
-
         Log.i(f"Extracted fingerprint: {fp}")
         return fp
 
@@ -492,11 +486,21 @@ def main() -> int:
 
     # Get fingerprint without using proxy
     target_fp = get_fingerprint(url, None)
-    if target_fp != "N/A":
-        Log.i(f"Target build: {target_fp}")
+    incremental = None
+    # Extract incremental from fingerprint (last part before :user)
+    if target_fp and ":" in target_fp:
+        parts = target_fp.split("/")
+        if len(parts) >= 5:
+            incremental = parts[-1].split(":")[0]
+
+    if incremental:
+        Log.i(f"Target build: {incremental}")
+        tag_name = f"{cfg.model}_{cfg.device}_{incremental}"
+        data['tag_name'] = tag_name
+    else:
+        tag_name = title
 
     if not args.skip_git:
-        tag_name = f"{cfg.model}_{cfg.device}_{target_fp}" if target_fp else None
         if not tag_name or check_release(tag_name):
             Log.i(f"GitHub release '{tag_name}' exists, skipping notification")
             return 0
