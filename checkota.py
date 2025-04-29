@@ -395,7 +395,7 @@ def setup_proxy(proxy_url: Optional[str] = None) -> Dict:
     if not proxy_url:
         return {}
     
-    Log.i(f"Using proxy for update checks: {proxy_url}")
+    Log.i(f"Using proxy for update checks")
     
     # Format: protocol://[user:pass@]host:port
     if proxy_url.startswith(('socks5://', 'socks4://', 'socks://')):
