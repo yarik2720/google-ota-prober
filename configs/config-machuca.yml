@@ -1,7 +1,7 @@
 # Configure this correctly. Otherwise, the prober will not succeed in getting OTA URLs!
 # All Android fingerprints follow the following format:
 #   <oem>/<product>/<device>:<android_version>/<build_tag>/<incremental>:user/release-keys
-# Xiaomi/volver/volver:11/RTT2.211214.001/933:user/release-keys
+# Xiaomi/machuca/machuca:11/RTT2.211214.001/1065:user/release-keys
 # Mi TV 4S, L43M5-5ASP, L55M5-5ASP, L65M5-5ASP, L43M7-7AEU, MSSP3, machuca
 
 oem: "Xiaomi"             # The company that made your device (e.g. Samsung)
@@ -9,5 +9,5 @@ product: "machuca"         # The product code. May be same as device code or mod
 device: "machuca"          # The device code. May be same as model code.
 android_version: "11" # Only put in the major version number.
 build_tag: "RTT2.211214.001"       # Example: RKQ1.211119.001
-incremental: "1037"     # Example: 2206131341
+incremental: "1065"     # Example: 2206131341
 model: "MiTV-MSSP3"           # The model code. (e.g. SM-T380)
