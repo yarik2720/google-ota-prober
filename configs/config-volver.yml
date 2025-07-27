@@ -3,6 +3,7 @@
 #   <oem>/<product>/<device>:<android_version>/<build_tag>/<incremental>:user/release-keys
 # Xiaomi/volver/volver:11/RTT2.211214.001/933:user/release-keys
 # Mi TV P1; MSSP2(volver): 32" L32M6-6ARG/EU
+# https://4pda.to/forum/index.php?showtopic=1034016
 
 oem: "Xiaomi"             # The company that made your device (e.g. Samsung)
 product: "volver"         # The product code. May be same as device code or model code.

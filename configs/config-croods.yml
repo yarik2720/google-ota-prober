@@ -3,6 +3,7 @@
 #   <oem>/<product>/<device>:<android_version>/<build_tag>/<incremental>:user/release-keys
 # Xiaomi/croods/croods:11/RTM4.220307.164/8313:user/release-keys
 # MiTV P1 MOOQ0(croods): 43" L43M6-6ARG/EU, 50" L50M6-6ARG/EU, 55" L55M6-6ARG/EU
+# https://4pda.to/forum/index.php?showtopic=1034016
 
 oem: "Xiaomi"             # The company that made your device (e.g. Samsung)
 product: "croods"         # The product code. May be same as device code or model code.

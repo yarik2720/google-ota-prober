@@ -3,6 +3,7 @@
 #   <oem>/<product>/<device>:<android_version>/<build_tag>/<incremental>:user/release-keys
 # Xiaomi/jaws/jaws:11/RTT0.211222.001/772:user/release-keys
 # TV Box S 2nd Gen (MDZ-28-AA)
+# https://4pda.to/forum/index.php?showtopic=1068290
 
 oem: "Xiaomi"             # The company that made your device (e.g. Samsung)
 product: "jaws"         # The product code. May be same as device code or model code.

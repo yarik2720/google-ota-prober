@@ -3,6 +3,7 @@
 #   <oem>/<product>/<device>:<android_version>/<build_tag>/<incremental>:user/release-keys
 # Xiaomi/tarzan/tarzan:11/RTM4.220307.164/8277:user/release-keys
 # MI TV A2 MOOQ1(tarzan) 4k L43M7-EARU, L50M7-EARU, L55M7-EARU
+# https://4pda.to/forum/index.php?showtopic=1063324
 
 oem: "Xiaomi"             # The company that made your device (e.g. Samsung)
 product: "tarzan"         # The product code. May be same as device code or model code.

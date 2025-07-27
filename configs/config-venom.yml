@@ -2,6 +2,7 @@
 # All Android fingerprints follow the following format:
 #   <oem>/<product>/<device>:<android_version>/<build_tag>/<incremental>:user/release-keys
 # MI TV Q2 50" 55" (mb 65") MOOR0/venom
+# https://4pda.to/forum/index.php?showtopic=1072591
 
 oem: "Xiaomi"             # The company that made your device (e.g. Samsung)
 product: "venom"         # The product code. May be same as device code or model code.
