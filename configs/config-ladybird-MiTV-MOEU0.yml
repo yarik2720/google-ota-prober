@@ -9,5 +9,5 @@ product: "ladybird"         # The product code. May be same as device code or mo
 device: "ladybird"          # The device code. May be same as model code.
 android_version: "14" # Only put in the major version number.
 build_tag: "UKM3.240326.001"       # Example: RKQ1.211119.001
-incremental: "0"     # Example: 2206131341
+incremental: "490"     # Example: 2206131341
 model: "MiTV-MOEU0"           # The model code. (e.g. SM-T380)
