@@ -2,6 +2,7 @@
 # All Android fingerprints follow the following format:
 #   <oem>/<product>/<device>:<android_version>/<build_tag>/<incremental>:user/release-keys
 # Xiaomi/lalaland/lalaland:14/UKN1.240806.017/V816.0.25.5.13.6.UOEMBTV:user/release-keys
+# https://4pda.to/forum/index.php?showtopic=1102774
 
 
 oem: "Xiaomi"             # The company that made your device (e.g. Samsung)
