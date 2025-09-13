@@ -11,8 +11,14 @@ if [ -f update_info.json ]; then
           update_description=$(jq -r ".[\"$config\"].description" update_info.json)
           update_url=$(jq -r ".[\"$config\"].url" update_info.json)
           update_size=$(jq -r ".[\"$config\"].size" update_info.json)
+          update_fingerprint=$(jq -r ".[\"$config\"].fingerprint" update_info.json)
 
           # Prepare release notes with proper Markdown formatting
+          if [ "$update_fingerprint" != "null" ] && [ -n "$update_fingerprint" ]; then
+            fingerprint_note="\n**Fingerprint:** $update_fingerprint"
+          else
+            fingerprint_note=""
+          fi
           release_notes="
 # $update_device ($tag_name)
 
@@ -21,7 +27,7 @@ $update_description
 
 **Size:** $update_size
 
-**Download URL:** $update_url
+**Download URL:** $update_url$fingerprint_note
 "
 
       # Check if release with this tag exists

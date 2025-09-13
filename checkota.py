@@ -261,7 +261,8 @@ class UpdateChecker:
             'description': None,
             'size': None,
             'url': None,
-            'tag_name': None
+            'tag_name': None,
+            'fingerprint': None
         }
 
         for entry in resp.setting:
@@ -467,7 +468,8 @@ def main() -> int:
             'device': cfg.model,
             'found': False,
             'timestamp': datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            'error': 'Check failed'
+            'error': 'Check failed',
+            'fingerprint': None
         }
     store.save(all_info)
 
@@ -491,6 +493,10 @@ def main() -> int:
 
     # Get fingerprint without using proxy
     target_fp = get_fingerprint(url, None)
+    # Update fingerprint in update_info.json if found
+    if target_fp:
+        all_info[config_name]['fingerprint'] = target_fp
+        store.save(all_info)
 
     if not args.skip_git:
         if check_release(tag_name):

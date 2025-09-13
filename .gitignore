@@ -8,3 +8,5 @@ __pycache__
 # non-python output
 build/
 .venv/
+update_info.json
+debug_checkin_response.txt
