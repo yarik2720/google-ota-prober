@@ -15,7 +15,7 @@ if [ -f update_info.json ]; then
 
           # Prepare release notes with proper Markdown formatting
           if [ "$update_fingerprint" != "null" ] && [ -n "$update_fingerprint" ]; then
-            fingerprint_note="\n**Fingerprint:** $update_fingerprint"
+            fingerprint_note="**Fingerprint:** $update_fingerprint"
           else
             fingerprint_note=""
           fi
@@ -25,9 +25,11 @@ if [ -f update_info.json ]; then
 ## Changelog:
 $update_description
 
+$fingerprint_note
+
 **Size:** $update_size
 
-**Download URL:** $update_url$fingerprint_note
+**Download URL:** $update_url
 "
 
       # Check if release with this tag exists
