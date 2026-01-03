@@ -1,7 +1,7 @@
 # Configure this correctly. Otherwise, the prober will not succeed in getting OTA URLs!
 # All Android fingerprints follow the following format:
 #   <oem>/<product>/<device>:<android_version>/<build_tag>/<incremental>:user/release-keys
-# Xiaomi/river/river:14/UKN1.240806.017/V816.0.25.4.16.3.UZTMBTV:user/release-keys
+# Xiaomi/river/river:14/UKN1.240806.017/V816.0.25.5.13.621.4.URTMIXM:user/release-keys
 
 
 oem: "Xiaomi"             # The company that made your device (e.g. Samsung)
@@ -9,5 +9,5 @@ product: "river"         # The product code. May be same as device code or model
 device: "river"          # The device code. May be same as model code.
 android_version: "14" # Only put in the major version number.
 build_tag: "UKN1.240806.017"       # Example: RKQ1.211119.001
-incremental: "V816.0.25.4.16.3.UZTMBTV"     # Example: 2206131341
+incremental: "V816.0.25.5.13.621.4.URTMIXM"     # Example: 2206131341
 model: "MiTV-MZTU0"           # The model code. (e.g. SM-T380)
